@@ -8,7 +8,7 @@
 
 # 1) TERM environment variable (default: jfbterm)
 #    jfbterm, jfbterm-color or jfbterm-256color.
-term: jfbterm-color
+term: jfbterm-256color
 
 
 #
@@ -29,7 +29,7 @@ history: 1024
 #splash.image: /path/to/image.png
 
 # 2) Tint image: scale from 0(no tint) - 10(black)
-splash.tint: 5
+# splash.tint: 5
 
 
 #
@@ -37,14 +37,14 @@ splash.tint: 5
 #
 
 # 1) Use iso10646 font only, let iconv handle the rest
-fontset: iso10646.1,pcf,U,/usr/local/lib/X11/fonts/local/unifont.pcf.gz
-+fontset: vt100-graphics,pcf,L,/usr/local/share/jfbterm/fonts/vt100-graphics.pcf.gz
+# fontset: iso10646.1,pcf,U,/usr/local/lib/X11/fonts/local/unifont.pcf.gz
+# +fontset: vt100-graphics,pcf,L,/usr/local/share/jfbterm/fonts/vt100-graphics.pcf.gz
 
 encoding: locale
 encoding.UTF-8: UTF-8,iso10646.1
 
 # 2) Use M+ bitmap fonts [japanese/mplusfonts] (for reference)
-#fontset: iso646-1973irv,pcf,L,/usr/local/lib/X11/fonts/local/mplus_f12r.pcf.gz
+fontset: iso10646.1,pcf,U,/usr/local/share/fonts/bitmap/ter-powerline-x20b.pcf.gz
 #+fontset: ansix3.4-1968,alias,L,iso646-1973irv
 #+fontset: jisc6226-1978,pcf,L,/usr/local/lib/X11/fonts/local/mplus_j12r.pcf.gz
 #+fontset: jisx0208-1983,alias,L,jisc6226-1978
