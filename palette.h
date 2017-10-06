@@ -66,12 +66,12 @@ void palette_configure(TCaps *caps);
 bool palette_hasColorMap(void);
 void palette_reset(void);
 void palette_restore(void);
-static inline uint8_t palette_ansiToVGA(const int ansiColor);
-static inline uint16_t palette_getTrueColor15(const uint8_t color);
-static inline uint16_t palette_getTrueColor16(const uint8_t color);
-static inline void palette_getTrueColor24(const uint8_t color,
-				   uint8_t *c0, uint8_t *c1, uint8_t *c2);
-static inline uint32_t palette_getTrueColor32(const uint8_t color);
+uint8_t palette_ansiToVGA(const int ansiColor);
+uint16_t palette_getTrueColor15(const uint8_t color);
+uint16_t palette_getTrueColor16(const uint8_t color);
+void palette_getTrueColor24(const uint8_t color,
+  		   uint8_t *c0, uint8_t *c1, uint8_t *c2);
+uint32_t palette_getTrueColor32(const uint8_t color);
 int palette_getRLength(void);
 int palette_getGLength(void);
 int palette_getBLength(void);
