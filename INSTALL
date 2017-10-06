@@ -1,0 +1,135 @@
+* FreeBSD 7.1
+
+次の ports をインストールしてください。
+
+ - converters/libiconv
+ - devel/gmake
+ - devel/pkg-config
+ - devel/autoconf262
+ - devel/automake14
+ - graphics/png
+ - x11-fonts/gnu-unifont
+
+次の手順を実行してください。
+
+% ./configure CPPFLAGS=-I/usr/local/include \
+              LDFLAGS=-L/usr/local/lib \
+              --prefix=/usr/local \
+              --mandir=/usr/local/man
+% gmake
+% su
+# gmake install
+# cp /usr/local/etc/jfbterm.conf.sample /usr/local/etc/jfbterm.conf
+# cat termcap.jfbterm >> /usr/share/misc/termcap
+# cap_mkdb /usr/share/misc/termcap
+
+
+* NetBSD 4.0.1
+
+環境によっては色が間違って表示されることがあります。
+
+カーネルの再構築が必要です。
+http://www.netbsd.org/docs/guide/en/chap-cons.html#chap-cons-wscons-wsdisplay-framebuffer
+の「8.1.1.3. Enabling VESA framebuffer console」を参考にしてください。
+
+次の pkgsrc をインストールしてください。
+
+  - devel/autoconf
+  - devel/automake
+  - devel/gmake
+  - devel/pkg-config
+  - graphics/png
+
+次の手順を実行してください。
+
+% rm configure
+% aclocal
+% automake -a -c -f
+% autoconf -f
+% ./configure CPPFLAGS=-I/usr/pkg/include \
+              LDFLAGS=-L/usr/pkg/lib \
+              --prefix=/usr/local \
+              --mandir=/usr/local/man \
+              --sysconfdir=/etc
+% gmake
+% su
+# gmake install
+# cp /etc/jfbterm.conf.sample /etc/jfbterm.conf
+# cat termcap.jfbterm >> /usr/share/misc/termcap
+# rm /usr/share/misc/termcap.db
+# cap_mkdb /usr/share/misc/termcap
+# wget http://unifoundry.com/unifont-5.1.20080820.pcf.gz
+# cp unifont-5.1.20080820.pcf.gz /usr/X11R6/lib/X11/fonts/misc/
+# echo /usr/pkg/lib >> /etc/ld.so.conf
+
+
+* OpenBSD 4.4
+
+環境によっては色が間違って表示されることがあります。
+
+次の二行を有効にしてカーネルの再構築を行ってください。
+
+  vesabios0	at mainbus?
+  option VESAFB
+
+次の ports をインストールしてください。
+
+  - converters/libiconv
+  - devel/autoconf/2.59
+  - devel/automake/1.4
+  - devel/gmake
+  - graphics/png
+
+次の手順を実行してください。
+
+$ rm configure
+$ export AUTOCONF_VERSION=2.59
+$ export AUTOMAKE_VERSION=1.4
+$ aclocal
+$ automake -a -c
+$ autoconf -f
+$ ./configure CPPFLAGS=-I/usr/local/include \
+              LDFLAGS=-L/usr/local/lib \
+              --prefix=/usr/local \
+              --mandir=/usr/local/man \
+              --sysconfdir=/etc
+$ gmake
+$ su
+# gmake install
+# cp /etc/jfbterm.conf.sample /etc/jfbterm.conf
+# cat termcap.jfbterm >> /usr/share/misc/termcap
+# cap_mkdb /usr/share/misc/termcap
+# wget http://unifoundry.com/unifont-5.1.20080820.pcf.gz
+# cp unifont-5.1.20080820.pcf.gz /usr/X11R6/lib/X11/fonts/misc/
+
+
+* Debian GNU/Linux 4.0r3
+
+次のパッケージをインストールしてください。
+
+ - autoconf
+ - automake
+ - gcc
+ - libc6-dev
+ - libpng12-dev
+ - linux-kernel-headers
+ - locales-all
+ - make
+ - pkg-config
+
+次の手順を実行してください。
+
+$ rm configure
+$ aclocal
+$ automake -a -c -f
+$ autoconf -f
+$ ./configure --prefix=/usr --mandir=/usr/share/man --sysconfdir=/etc
+$ make
+$ su
+# make install
+# cp /etc/jfbterm.conf.sample /etc/jfbterm.conf
+# tic terminfo.jfbterm
+# wget http://unifoundry.com/unifont-5.1.20080820.pcf.gz
+# cp unifont-5.1.20080820.pcf.gz /usr/share/fonts/X11/misc/
+
+
