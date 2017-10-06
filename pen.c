@@ -88,7 +88,7 @@ void pen_copy(TPen *p, TPen *q)
 	p->highlight = q->highlight;
 }
 
-inline void pen_resetAttribute(TPen *p)
+void pen_resetAttribute(TPen *p)
 {
 	assert(p != NULL);
 
