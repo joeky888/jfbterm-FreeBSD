@@ -87,10 +87,10 @@ static void vterm_set_default_encoding(TVterm *p, const char *encoding);
 static void vterm_set_default_invoke_and_designate(TVterm *p);
 static void vterm_push_current_pen(TVterm *p, bool flag);
 static void vterm_pop_pen_and_set_current_pen(TVterm *p, bool flag);
-static inline bool IS_GL_AREA(TVterm *p, u_char c);
-static inline bool IS_GR_AREA(TVterm *p, u_char c);
-static inline void INSERT_N_CHARS_IF_NEEDED(TVterm *p, int n);
-static inline void SET_WARP_FLAG_IF_NEEDED(TVterm *p);
+static bool IS_GL_AREA(TVterm *p, u_char c);
+static bool IS_GR_AREA(TVterm *p, u_char c);
+static void INSERT_N_CHARS_IF_NEEDED(TVterm *p, int n);
+static void SET_WARP_FLAG_IF_NEEDED(TVterm *p);
 static int vterm_put_normal_char(TVterm *p, u_char c);
 #ifdef ENABLE_UTF8
 static int vterm_put_uchar(TVterm *p, uint16_t code);
@@ -806,25 +806,25 @@ static void vterm_pop_pen_and_set_current_pen(TVterm *p, bool flag)
 	free(pen);
 }
 
-static inline bool IS_GL_AREA(TVterm *p, u_char c)
+static bool IS_GL_AREA(TVterm *p, u_char c)
 {
 	return (p->tgl.type & FONT_SIGNATURE_96CHAR) ?
 	       (0x1f < c && c < 0x80) : (0x20 < c && c < 0x7f);
 }
 
-static inline bool IS_GR_AREA(TVterm *p, u_char c)
+static bool IS_GR_AREA(TVterm *p, u_char c)
 {
 	return (p->tgr.type & FONT_SIGNATURE_96CHAR) ?
 	       (0x9f < c) : (0xa0 < c && c < 0xff);
 }
 
-static inline void INSERT_N_CHARS_IF_NEEDED(TVterm *p, int n)
+static void INSERT_N_CHARS_IF_NEEDED(TVterm *p, int n)
 {
 	if (p->insert)
 		vterm_insert_n_chars(p, n);
 }
 
-static inline void SET_WARP_FLAG_IF_NEEDED(TVterm *p)
+static void SET_WARP_FLAG_IF_NEEDED(TVterm *p)
 {
 	if (p->pen.x == p->xmax - 1)
 		p->wrap = true;
