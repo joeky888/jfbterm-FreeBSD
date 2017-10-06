@@ -1,4 +1,4 @@
-```sh
+===Build===
 sudo pkg install libiconv png gnu-unifont
 export CC='gcc' && export CXX='g++' # GCC
 git clone --depth 1 https://github.com/j16180339887/jfbterm-FreeBSD && cd jfbterm-FreeBSD
@@ -13,4 +13,8 @@ sudo mkfontdir /usr/local/share/fonts/bitmap/
 sudo fc-cache -fv
 sudo cat termcap.jfbterm >> /usr/share/misc/termcap
 sudo cap_mkdb /usr/share/misc/termcap
-```
+
+===Features===
+
+* Use powerline bitmap font
+* Fix build errors
